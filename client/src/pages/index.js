@@ -141,7 +141,7 @@ export default function Home() {
       {/* Header */}
       <div className="flex text-center flex-col mb-4">
         <div className="font-bold text-4xl mb-2">bryptoblogs</div>
-        <div className="text-md">learn from your favorite [brypto] companies <br /> (shamlessly yoinked from <a href="https://github.com/ishan0102/engblogs" className="text-emerald-500 hover:text-emerald-700 underline">ishan</a>(10x engineer))</div>
+        <div className="text-md">learn from your favorite [brypto] companies <br /> (shamelessly yoinked from <a href="https://github.com/ishan0102/engblogs" className="text-emerald-500 hover:text-emerald-700 underline">ishan</a>(10x engineer))</div>
       </div>
       <div className="absolute top-0 right-0 md:top-4 md:right-4">
         <a href="https://github.com/iturner72/bryptoblogs" target="_blank" rel="noopener noreferrer">

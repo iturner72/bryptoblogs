@@ -1,4 +1,4 @@
-# engblogs.dev
+# bryptoblogs.dev
 learn from your favorite tech companies
 
 ## what is this

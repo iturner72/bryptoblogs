@@ -4,17 +4,17 @@ import Head from 'next/head'
 import Script from 'next/script'
 
 const defaultSEO = {
-  title: 'engblogs',
+  title: 'bryptoblogs',
   description:
     'learn from your favorite tech companies',
   openGraph: {
     type: 'website',
-    url: 'https://www.engblogs.dev',
-    site_name: 'engblogs',
+    url: 'https://www.bryptoblogs.dev',
+    site_name: 'bryptoblogs',
     images: [
       {
         url: 'https://www.engblogs.dev/static/thumbnail.png',
-        alt: 'engblogs.dev homepage',
+        alt: 'bryptoblogs.dev homepage',
       },
     ],
   },
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
 
       <Head>
-        <title>engblogs</title>
+        <title>bryptoblogs</title>
         <link rel="icon" href="/static/favicon.png" />
       </Head>
 
