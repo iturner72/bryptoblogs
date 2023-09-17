@@ -88,6 +88,7 @@ def parse_feed(url, company):
 
 # Fetch companies and links from the 'links' table
 response = supabase.table("links").select("company, link").execute()
+print("Supabase Response:", response)
 rss_links = response.data
 
 print("Start parsing feeds...")
@@ -96,3 +97,4 @@ for link_info in tqdm(rss_links, desc="Parsing RSS feeds", unit="feed"):
     url = link_info["link"]
     parse_feed(url, company)
 print("Finished parsing feeds.")
+print("RSS Links:", rss_links)
