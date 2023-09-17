@@ -192,7 +192,7 @@ export default function Home() {
       {/* Loading */}
       {!dataLoaded && (
         <div className="flex justify-center mt-8">
-          <svg className="animate-spin h-8 w-8 text-indigo-500" viewBox="0 0 24 24">
+          <svg className="animate-spin h-8 w-8 text-emerald-500" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" fill="none"></circle>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
           </svg>
@@ -203,8 +203,8 @@ export default function Home() {
       {/* Footer */}
       {dataLoaded &&
         <div className="text-center mt-8">
-          built by <a className="text-indigo-500" href="https://www.ishanshah.me/" target="_blank">ishan</a>.
-          summaries by <a className="text-indigo-500" href="https://platform.openai.com/docs/models/gpt-3-5" target="_blank">gpt-3.5</a>.
+          built by <a className="text-emerald-500 hover:text-emerald-700" href="https://www.ishanshah.me/" target="_blank">ishan</a>. modified by <a className="text-emerald-500 hover:text-emerald-700" href="https://www.iturner.xyz/" target="_blank">ian</a>.
+          summaries by <a className="text-emerald-500 hover:text-emerald-700" href="https://platform.openai.com/docs/models/gpt-3-5" target="_blank">gpt-3.5</a>.
         </div>
       }
     </div>
