@@ -50,10 +50,10 @@ export default function Home() {
       setTotalPages(parseInt(cachedTotalPages));
       setDataLoaded(true);
     } else {
-      // Query 'posts' table
+      // Query 'posts' table with a join on 'links' table to get the logo_url
       let query = supabase
         .from('posts')
-        .select("*", { count: "exact" })
+        .select("*, links(logo_url)", { count: "exact" })
         .order('published_at', { ascending: false })
         .order('id', { ascending: false });
 
@@ -101,7 +101,7 @@ export default function Home() {
 
     let query = supabase
       .from('posts')
-      .select("*", { count: "exact" })
+      .select("*, links(logo_url)", { count: "exact" })
       .order('published_at', { ascending: false })
       .order('id', { ascending: false });
 
@@ -182,6 +182,7 @@ export default function Home() {
             description={post.description}
             summary={post.summary}
             company={post.company}
+            logoUrl={post.links.logo_url}
           />
         ))}
       </div>
