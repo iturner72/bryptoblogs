@@ -19,7 +19,7 @@ export default function BlogPost({ title, published_at, link, summary, company, 
           </div>
           <p className="mt-2 text-gray-500">
             {/* Manually append a period if it doesn't exist and there isn't other punctuation */}
-            {summary + (".!?".includes(summary.slice(-1)) ? "" : ".")}
+            {summary ? summary + (".!?".includes(summary.slice(-1)) ? "" : ".") : ""}
           </p>
         </div>
       </div>
