@@ -41,8 +41,8 @@ export default function Home() {
 
   // Fetching
   const fetchPosts = async (pageNumber) => {
-    // Check if posts are already stored in cache
-    const cachedPosts = sessionStorage.getItem(`posts-${pageNumber}`);
+    // Check if poasts are already stored in cache
+    const cachedPosts = sessionStorage.getItem(`poasts-${pageNumber}`);
     const cachedTotalPages = sessionStorage.getItem("totalPages");
 
     if (cachedPosts && cachedTotalPages && filters.length === 0 && searchTerm.length === 0) {
@@ -50,10 +50,10 @@ export default function Home() {
       setTotalPages(parseInt(cachedTotalPages));
       setDataLoaded(true);
     } else {
-      // Query 'posts' table with a join on 'links' table to get the logo_url
+      // Query 'poasts' table with a join on 'links' table to get the logo_url
       let query = supabase
-        .from('posts')
-        .select("*, links(logo_url)", { count: "exact" })
+        .from('poasts')
+        .select("*, links!posts_company_fkey(logo_url)", { count: "exact" })
         .order('published_at', { ascending: false })
         .order('id', { ascending: false });
 
@@ -67,20 +67,20 @@ export default function Home() {
         query = query.or(`title.ilike.%${searchTerm}%, description.ilike.%${searchTerm}%, summary.ilike.%${searchTerm}%, company.ilike.%${searchTerm}%`);
       }
 
-      let { count, data: posts, error } = await query.range(pageNumber * POSTS_PER_PAGE, (pageNumber + 1) * POSTS_PER_PAGE - 1);
+      let { count, data: poasts, error } = await query.range(pageNumber * POSTS_PER_PAGE, (pageNumber + 1) * POSTS_PER_PAGE - 1);
 
       if (error) {
-        console.error("Error fetching posts:", error);
+        console.error("Error fetching poasts:", error);
       } else {
-        setBlogPostsList(posts);
+        setBlogPostsList(poasts);
 
         const totalPages = Math.ceil(count / POSTS_PER_PAGE);
         setTotalPages(totalPages);
         setDataLoaded(true);
 
-        // Store posts and totalPages in cache
+        // Store poasts and totalPages in cache
         if (filters.length === 0 && searchTerm.length === 0) {
-          sessionStorage.setItem(`posts-${pageNumber}`, JSON.stringify(posts));
+          sessionStorage.setItem(`poasts-${pageNumber}`, JSON.stringify(poasts));
           sessionStorage.setItem("totalPages", totalPages);
         }
       }
@@ -94,13 +94,13 @@ export default function Home() {
 
   // Prefetching
   const prefetchPosts = async (pageNumber, filters) => {
-    const cachedPosts = sessionStorage.getItem(`posts-${pageNumber}`);
+    const cachedPosts = sessionStorage.getItem(`poasts-${pageNumber}`);
 
     // If we have the data in the cache, no need to prefetch
     if (cachedPosts) return;
 
     let query = supabase
-      .from('posts')
+      .from('poasts')
       .select("*, links(logo_url)", { count: "exact" })
       .order('published_at', { ascending: false })
       .order('id', { ascending: false });
@@ -114,13 +114,13 @@ export default function Home() {
       query = query.or(`description.ilike.%${searchTerm}%, title.ilike.%${searchTerm}%`);
     }
 
-    let { count, data: posts, error } = await query.range(pageNumber * POSTS_PER_PAGE, (pageNumber + 1) * POSTS_PER_PAGE - 1);
+    let { count, data: poasts, error } = await query.range(pageNumber * POSTS_PER_PAGE, (pageNumber + 1) * POSTS_PER_PAGE - 1);
 
     if (error) {
-      console.error("Error fetching posts:", error);
+      console.error("Error fetching poasts:", error);
     } else {
-      // Store posts in cache
-      sessionStorage.setItem(`posts-${pageNumber}`, JSON.stringify(posts));
+      // Store poasts in cache
+      sessionStorage.setItem(`poasts-${pageNumber}`, JSON.stringify(poasts));
     }
   };
 
