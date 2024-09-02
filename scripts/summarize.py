@@ -74,35 +74,4 @@ def get_summary(title, description, model="gpt-3.5-turbo"):
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt},
         ]
-        # Update the number of tokens
-        num_tokens = num_tokens_from_messages(messages, model=model)
-
-    # Define the maximum number of retries and the initial delay
-    max_retries = 10
-    delay = 1  # delay is in seconds
-
-    for attempt in range(max_retries):
-        try:
-            # Generate the summary
-            completion = openai.ChatCompletion.create(model=model, messages=messages)
-            # If successful, break the loop and continue with the rest of the code
-            break
-        except openai.error.ServiceUnavailableError:
-            # If a ServiceUnavailableError is caught, print a warning and wait
-            print(
-                f"Warning: OpenAI server is overloaded or not ready yet. Retrying in {delay} seconds..."
-            )
-            time.sleep(delay)
-            # Double the delay for the next possible attempt, add some random value to prevent synchronized retries
-            delay *= 2 + random.uniform(0, 1)
-
-    # Get summary from the completion response
-    summary_json = completion.choices[0].message["content"]
-    try:
-        # The response from the model is a JSON string. Parse it to get the actual summary.
-        summary = json.loads(summary_json)["summary"]
-        print(f"Got summary for {title}: {summary}")
-    except json.JSONDecodeError:
-        print(f"Could not generate summary for {title}")
-        summary = "No summary generated due to decoding error"
-    return summary
+        # Update the number of t
