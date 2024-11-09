@@ -146,10 +146,19 @@ export default function Home() {
           <a 
             href="https://leptos.dev" 
             className="text-rose-400 hover:text-blue-900 underline pl-2 pr-2"
+            target="_blank"
           >
             leptos
           </a> 
-          for no reason whatsoever soon
+          ( for no reason whatsoever, soon
+          <a 
+            href="https://bryptoblogs.fly.dev" 
+            className="text-emerald-600 hover:text-emerald-400 pl-2 pr-2"
+            target="_blank"
+          >
+            (now)
+          </a> 
+          )
         </div>
         <div className="text-md">
           learn from your favorite [brypto] companies <br /> 
@@ -158,7 +167,7 @@ export default function Home() {
             href="https://github.com/ishan0102/engblogs" 
             className="text-emerald-500 hover:text-emerald-700 underline"
           >
-            ishan
+            _ishan0102_
           </a>
           (10x engineer))
         </div>
